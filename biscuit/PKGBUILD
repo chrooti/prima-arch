@@ -1,0 +1,21 @@
+# Maintainer: Alessandro Cerruti <alessandro.cerruti@prima.it>
+# Contributor: Alessandro Cerruti <alessandro.cerruti@prima.it>
+
+_pkgbase=biscuit
+pkgname=biscuit-bin
+pkgver=0.1.7
+pkgrel=2
+pkgdesc='Biscuit is a simple key-value store for your infrastructure secrets.'
+arch=(x86_64)
+url='https://github.com/primait/biscuit'
+license=(Apache)
+depends=(glibc)
+source=("$_pkgbase::https://github.com/primait/biscuit/releases/download/v$pkgver/biscuit-linux_amd64.tgz" wrapper.sh)
+md5sums=('SKIP' 'SKIP')
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 biscuit "$pkgdir"/usr/bin/biscuit_exe
+  install -Dm755 wrapper.sh "$pkgdir"/usr/bin/biscuit
+}
